@@ -1,0 +1,6 @@
+@RumProject.API_HostAddress = http://localhost:5073
+
+GET {{RumProject.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
