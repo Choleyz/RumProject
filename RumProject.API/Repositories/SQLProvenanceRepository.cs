@@ -23,6 +23,7 @@ namespace RumProject.API.Repositories
         public async Task<Provenance?> DeleteAsync(Guid id)
         {
             var existingProvenance = _dbContext.Provenances.FirstOrDefault(p => p.Id == id);
+
             if (existingProvenance == null)
             {
                 return null;

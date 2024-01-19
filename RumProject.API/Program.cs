@@ -22,7 +22,9 @@ namespace RumProject.API
             builder.Services.AddDbContext<RumProjectDBContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("RumProjectConnectionString")));
 
+
             builder.Services.AddScoped<IProvenanceRepository, SQLProvenanceRepository>();
+            builder.Services.AddScoped<IAlcoholRepository, SQLAlcoholRepository>();
 
             builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
