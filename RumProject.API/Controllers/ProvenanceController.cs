@@ -61,16 +61,24 @@ namespace RumProject.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]AddProvenanceRequestDto addProvenanceRequestDto)
         {
-            // Map DTO to Domain Model
-            var provenanceDomainModel = _mapper.Map<Provenance>(addProvenanceRequestDto);
+            if (ModelState.IsValid)
+            {
+                // Map DTO to Domain Model
+                var provenanceDomainModel = _mapper.Map<Provenance>(addProvenanceRequestDto);
 
-            // Use Domain Model to create Provenance
-            provenanceDomainModel = await _provenanceRepository.CreateAsync(provenanceDomainModel);
+                // Use Domain Model to create Provenance
+                provenanceDomainModel = await _provenanceRepository.CreateAsync(provenanceDomainModel);
 
-            // Map Domain Model back to DTO
-            var provenanceDto = _mapper.Map<ProvenanceDTO>(provenanceDomainModel);
+                // Map Domain Model back to DTO
+                var provenanceDto = _mapper.Map<ProvenanceDTO>(provenanceDomainModel);
 
-            return CreatedAtAction(nameof(GetById), new { id = provenanceDomainModel.Id }, provenanceDomainModel);
+                return CreatedAtAction(nameof(GetById), new { id = provenanceDomainModel.Id }, provenanceDomainModel);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+
         }
 
         // UPDATE PROVENANCE

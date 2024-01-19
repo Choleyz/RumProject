@@ -60,7 +60,7 @@ namespace RumProject.API.Controllers
         }
 
         // UPDATE ALCOHOL
-        [HttpPatch]
+        [HttpPut]
         [Route("{id:guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, UpdateAlcoholRequestDto updateAlcoholRequestDto)
         {

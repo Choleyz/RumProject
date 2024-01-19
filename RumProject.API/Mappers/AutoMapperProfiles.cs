@@ -13,11 +13,15 @@ namespace RumProject.API.Mappers
             CreateMap<AddProvenanceRequestDto, Provenance>().ReverseMap();
             CreateMap<UpdateProvenanceRequestDto, Provenance>().ReverseMap();
             //Alcohol
-            CreateMap<AddAlcoholRequestDto, Alcohol>().ReverseMap();
             CreateMap<Alcohol, AlcoholDTO>().ReverseMap();
+            CreateMap<AddAlcoholRequestDto, Alcohol>().ReverseMap();
+            CreateMap<UpdateAlcoholRequestDto, Alcohol>().ReverseMap();
             // Distillery
             CreateMap<Distillery, DistilleryDTO>().ReverseMap();
-            CreateMap<UpdateAlcoholRequestDto, Alcohol>().ReverseMap();
+            CreateMap<AddDistilleryRequestDto, Distillery>().ReverseMap();
+            CreateMap<UpdateDistilleryRequestDto, Distillery>().ReverseMap();
+
+
         }
     }
 }

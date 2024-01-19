@@ -25,6 +25,7 @@ namespace RumProject.API
 
             builder.Services.AddScoped<IProvenanceRepository, SQLProvenanceRepository>();
             builder.Services.AddScoped<IAlcoholRepository, SQLAlcoholRepository>();
+            builder.Services.AddScoped<IDistilleryRepository, SQLDistilleryRepository>();
 
             builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

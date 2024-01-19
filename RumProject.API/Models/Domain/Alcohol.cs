@@ -21,8 +21,5 @@
         public Distillery Distillery { get; set; }
         public Provenance Provenance { get; set; }
 
-
-
-
     }
 }
