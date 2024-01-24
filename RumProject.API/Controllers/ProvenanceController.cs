@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RumProject.API.CustomActionFilters;
 using RumProject.API.Data;
 using RumProject.API.Models.Domain;
 using RumProject.API.Models.DTO;
@@ -59,10 +60,10 @@ namespace RumProject.API.Controllers
 
         // CREATE NEW PROVENANCE
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody]AddProvenanceRequestDto addProvenanceRequestDto)
         {
-            if (ModelState.IsValid)
-            {
+
                 // Map DTO to Domain Model
                 var provenanceDomainModel = _mapper.Map<Provenance>(addProvenanceRequestDto);
 
@@ -73,17 +74,13 @@ namespace RumProject.API.Controllers
                 var provenanceDto = _mapper.Map<ProvenanceDTO>(provenanceDomainModel);
 
                 return CreatedAtAction(nameof(GetById), new { id = provenanceDomainModel.Id }, provenanceDomainModel);
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
 
         }
 
         // UPDATE PROVENANCE
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody]UpdateProvenanceRequestDto updateProvenanceRequestDto )
         {
             // Map DTO to Domain Model

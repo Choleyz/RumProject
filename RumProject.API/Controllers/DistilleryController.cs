@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RumProject.API.CustomActionFilters;
 using RumProject.API.Models.Domain;
 using RumProject.API.Models.DTO;
 using RumProject.API.Repositories;
@@ -50,6 +51,7 @@ namespace RumProject.API.Controllers
 
         // CREATE DISTILLERY
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody]AddDistilleryRequestDto addDistilleryRequestDto)
         {
             // Map DTO to Domain Model
@@ -65,6 +67,7 @@ namespace RumProject.API.Controllers
         // UPDATE DISTILLERY
         [HttpPut]
         [Route("{id:guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute]Guid id, UpdateDistilleryRequestDto updateDistilleryRequestDto)
         {
             // Map DTO to Domain Model
